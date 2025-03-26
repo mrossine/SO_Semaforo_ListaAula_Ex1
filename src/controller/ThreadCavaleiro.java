@@ -7,11 +7,11 @@ public class ThreadCavaleiro extends Thread {
 	private String cavaleiro;
 	private int tochaCav;
 	private Semaphore semaforo;
-	
+
 	private static int saida = (int) (Math.random() * 4);
 	private static int tocha = 1;
 	private static int pedra = 1;
-	private static int[] portas = {1, 1, 1, 1};
+	private static int[] portas = { 1, 1, 1, 1 };
 
 	public ThreadCavaleiro(String cavaleiro, Semaphore semaforo) {
 		this.cavaleiro = cavaleiro;
@@ -27,10 +27,11 @@ public class ThreadCavaleiro extends Thread {
 	private void entraPorta() {
 		try {
 			semaforo.acquire();
-			int escolha = (int) (Math.random() * 4);;
+			int escolha = (int) (Math.random() * 4);
+			;
 			do {
 				if (portas[escolha] == 1) {
-					if(escolha != saida) {
+					if (escolha != saida) {
 						System.out.println("O " + cavaleiro + " foi morto pelo monstro");
 						portas[escolha] = 0;
 					} else {
@@ -52,14 +53,15 @@ public class ThreadCavaleiro extends Thread {
 
 		while (distanciaPercorrida < 2000) {
 			distanciaPercorrida += passo;
-			/*
+
 			System.out.println("O " + cavaleiro + " andou " + distanciaPercorrida + "m.");
+
 			try {
 				sleep(50);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			*/
+
 			if (distanciaPercorrida >= 500) {
 				try {
 					semaforo.acquire();
